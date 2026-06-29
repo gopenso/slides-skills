@@ -1,33 +1,33 @@
 # Swiss Map Component
 
-用于地理、历史、城市、人文路线、门店/校区/事件点位等内容。它不是新的 Swiss 正文版式,而是 **S08 Duo Compare 的右侧插槽扩展**:左侧仍是解释卡片,右侧替换为地图组件。
+用於地理、歷史、城市、人文路線、門店/校區/事件點位等內容。它不是新的 Swiss 正文版式，而是 **S08 Duo Compare 的右側插槽擴充**：左側仍是解釋卡片，右側取代為地圖元件。
 
-## 何时使用
+## 何時使用
 
-- 文档里出现地点、街区、路线、人物住所、机构分布、城市漫游。
-- 用户明确希望有地图、点位、关系线或地理组件。
-- 内容需要解释“空间关系”,而不只是罗列人物或地点。
+- 文件裡出現地點、街區、路線、人物住所、機構分佈、城市漫遊。
+- 使用者明確希望有地圖、點位、關係線或地理元件。
+- 內容需要解釋「空間關係」，而不只是羅列人物或地點。
 
-## 硬规则
+## 硬規則
 
-- `<section>` 仍写 `data-layout="S08"`;不要新增 `P23/P24` 或自定义正文页。
-- 页面结构必须是:顶部标题 + 左侧说明卡片 + 右侧地图卡片。
-- 地图标记由 HTML 组件组成:点 `.pin-dot` + 连线 `.pin-line` + 卡片 `.pin-card`。
-- SVG 只画 fallback 关系线,不要在 SVG 里写文字。
-- MapLibre 地图默认关闭滚轮缩放和拖动,避免触发 PPT 翻页。
-- 右上角必须有 `+` / `-` / `DRAG` 控制。用户点击 `DRAG` 后才允许拖动地图。
-- 必须有静态 fallback:CDN 或地图瓦片失败时,仍能看到点位、关系线和卡片。
+- `<section>` 仍寫 `data-layout="S08"`；不要新增 `P23/P24` 或自定義正文頁。
+- 頁面結構必須是：頂部標題 + 左側說明卡片 + 右側地圖卡片。
+- 地圖示記由 HTML 元件組成：點 `.pin-dot` + 連線 `.pin-line` + 卡片 `.pin-card`。
+- SVG 只畫 fallback 關係線，不要在 SVG 裡寫文字。
+- MapLibre 地圖預設關閉滾輪縮放和拖動，避免觸發 PPT 翻頁。
+- 右上角必須有 `+` / `-` / `DRAG` 控制。使用者點選 `DRAG` 後才允許拖動地圖。
+- 必須有靜態 fallback：CDN 或地圖瓦片失敗時，仍能看到點位、關係線和卡片。
 
-## 数据契约
+## 資料契約
 
-写页面前先定义点位和关系。`x/y` 用于静态 fallback 百分比坐标,`coord` 用于 MapLibre 经纬度。
+寫頁面前先定義點位和關係。`x/y` 用於靜態 fallback 百分比座標，`coord` 用於 MapLibre 經緯度。
 
 ```js
 const MAP_POINTS = [
-  { id: 'gu', name: '顾维钧', meta: '外交', coord: [117.2048, 39.1060], x: 62, y: 68, accent: true },
-  { id: 'cao', name: '曹锟', meta: '北洋', coord: [117.1988, 39.1080], x: 34, y: 48 },
-  { id: 'sun', name: '孙殿英', meta: '军阀', coord: [117.2028, 39.1090], x: 52, y: 54 },
-  { id: 'zhang', name: '张自忠', meta: '抗战', coord: [117.1966, 39.1120], x: 58, y: 28, accent: true },
+  { id: 'gu', name: '顧維鈞', meta: '外交', coord: [117.2048, 39.1060], x: 62, y: 68, accent: true },
+  { id: 'cao', name: '曹錕', meta: '北洋', coord: [117.1988, 39.1080], x: 34, y: 48 },
+  { id: 'sun', name: '孫殿英', meta: '軍閥', coord: [117.2028, 39.1090], x: 52, y: 54 },
+  { id: 'zhang', name: '張自忠', meta: '抗戰', coord: [117.1966, 39.1120], x: 58, y: 28, accent: true },
   { id: 'jin', name: '金氏宅邸', meta: '交通站', coord: [117.2012, 39.1114], x: 66, y: 35, side: 'left' },
 ];
 
@@ -40,7 +40,7 @@ const MAP_RELATIONS = [
 
 ## 必要 CSS
 
-放到生成页 `<head>` 的额外 `<style>` 中,不要改 `template-swiss.html` 的全局基座类。
+放到產生頁 `<head>` 的額外 `<style>` 中，不要改 `template-swiss.html` 的全域性基座類。
 
 ```html
 <link href="https://unpkg.com/maplibre-gl@5.14.0/dist/maplibre-gl.css" rel="stylesheet">
@@ -84,35 +84,35 @@ const MAP_RELATIONS = [
 </style>
 ```
 
-## 页面骨架
+## 頁面骨架
 
 ```html
 <section class="slide" data-layout="S08" data-animate="duo-mirror">
   <div class="canvas-card">
     <header class="chrome-min"><div class="l">06 / NN · MAP COMPONENT</div><div class="r">MAPLIBRE / STATIC FALLBACK</div></header>
-    <h2 class="h-xl-zh">把人物住所放回街区里</h2>
+    <h2 class="h-xl-zh">把人物住所放回街區裡</h2>
     <div class="history-map-grid">
       <aside class="history-side">
         <div class="history-side-head">
-          <div class="big">住所不是点位，<br/>而是关系入口。</div>
-          <div class="small">这页用地图承载空间关系，用左侧卡片解释人物之间的牵连。</div>
+          <div class="big">住所不是點位，<br/>而是關係入口。</div>
+          <div class="small">這頁用地圖承載空間關係，用左側卡片解釋人物之間的牽連。</div>
         </div>
-        <div class="relation-card"><div class="nb">01</div><div><div class="ttl">顾维钧 ↔ 曹锟</div><div class="desc">说明两者为什么有关系，至少写成完整一句。</div></div></div>
-        <div class="relation-card"><div class="nb">02</div><div><div class="ttl">曹锟 ↔ 孙殿英</div><div class="desc">不要只写标签，写清历史关系或空间关系。</div></div></div>
-        <div class="relation-card"><div class="nb">03</div><div><div class="ttl">张自忠 ↔ 金氏宅邸</div><div class="desc">每张卡控制在 2-3 行，形成信息密度。</div></div></div>
-        <div class="relation-card"><div class="nb">04</div><div><div class="ttl">张自忠 ↔ 利德尔</div><div class="desc">可以用跨身份对照补充人文厚度。</div></div></div>
+        <div class="relation-card"><div class="nb">01</div><div><div class="ttl">顧維鈞 ↔ 曹錕</div><div class="desc">說明兩者為什麼有關係，至少寫成完整一句。</div></div></div>
+        <div class="relation-card"><div class="nb">02</div><div><div class="ttl">曹錕 ↔ 孫殿英</div><div class="desc">不要只寫標籤，寫清歷史關係或空間關係。</div></div></div>
+        <div class="relation-card"><div class="nb">03</div><div><div class="ttl">張自忠 ↔ 金氏宅邸</div><div class="desc">每張卡控制在 2-3 行，形成資訊密度。</div></div></div>
+        <div class="relation-card"><div class="nb">04</div><div><div class="ttl">張自忠 ↔ 利德爾</div><div class="desc">可以用跨身份對照補充人文厚度。</div></div></div>
       </aside>
       <div class="map-panel">
-        <div class="map-title"><div class="k">RELATION MAP</div><div class="t">地点 / 人物 / 事件</div></div>
-        <div class="map-controls" aria-label="地图控制">
-          <button class="map-ctrl" type="button" data-map-ctrl="zoom-in" aria-label="放大地图">+</button>
-          <button class="map-ctrl" type="button" data-map-ctrl="zoom-out" aria-label="缩小地图">-</button>
-          <button class="map-ctrl drag" type="button" data-map-ctrl="drag" aria-label="拖动地图" aria-pressed="false">DRAG</button>
+        <div class="map-title"><div class="k">RELATION MAP</div><div class="t">地點 / 人物 / 事件</div></div>
+        <div class="map-controls" aria-label="地圖控制">
+          <button class="map-ctrl" type="button" data-map-ctrl="zoom-in" aria-label="放大地圖">+</button>
+          <button class="map-ctrl" type="button" data-map-ctrl="zoom-out" aria-label="縮小地圖">-</button>
+          <button class="map-ctrl drag" type="button" data-map-ctrl="drag" aria-label="拖動地圖" aria-pressed="false">DRAG</button>
         </div>
         <div id="swiss-map" class="swiss-map" data-points='[填入 JSON]' data-relations='[填入 JSON]'>
           <div class="map-static" aria-hidden="true">
-            <svg class="static-relations" viewBox="0 0 100 100" preserveAspectRatio="none">[静态连线]</svg>
-            [静态 marker 卡片]
+            <svg class="static-relations" viewBox="0 0 100 100" preserveAspectRatio="none">[靜態連線]</svg>
+            [靜態 marker 卡片]
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ const MAP_RELATIONS = [
 
 ## 必要 JS
 
-放到 `</body>` 前。生成多张地图页时,把 id 从 `swiss-map` 改成唯一 id,并让初始化函数接收 selector。
+放到 `</body>` 前。產生多張地圖頁時，把 id 從 `swiss-map` 改成唯一 id，並讓初始化函式接收 selector。
 
 ```html
 <script>
@@ -206,10 +206,10 @@ const MAP_RELATIONS = [
 </script>
 ```
 
-## 视觉检查
+## 視覺檢查
 
-- 左侧卡片总高度要和右侧地图卡片对齐,不要上浮一半。
-- 地图标题和控制按钮不能互相遮挡;点位卡片不能压到右上角控制区。
-- marker 卡片至少显示地点名,`meta` 只作为短标签。
-- 左侧关系卡不要惜字如金,每张卡应有完整一句解释。
-- 若地图无法加载,静态 fallback 仍必须可读。
+- 左側卡片總高度要和右側地圖卡片對齊，不要上浮一半。
+- 地圖示題和控制按鈕不能互相遮擋；點位卡片不能壓到右上角控制區。
+- marker 卡片至少顯示地點名，`meta` 只作為短標籤。
+- 左側關係卡不要惜字如金，每張卡應有完整一句解釋。
+- 若地圖無法載入，靜態 fallback 仍必須可讀。

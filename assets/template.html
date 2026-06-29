@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[必填] 替换为 PPT 标题 · Deck Title</title>
+<title>[必填] 取代為 PPT 標題 · Deck Title</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+TC:wght@300;400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ 主题色(默认:🖋 墨水经典) ============
-       切换主题:从 references/themes.md 复制对应的 :root 块
-       整体替换这几行(--ink / --ink-rgb / --paper / --paper-rgb)
-       其他地方散落的 rgba() 都走 var(--ink-rgb) / var(--paper-rgb),无需逐处改 */
+    /* ============ 主題色（預設：🖋 墨水經典） ============
+       切換主題：從 references/themes.md 複製對應的 :root 塊
+       整體取代這幾行(--ink / --ink-rgb / --paper / --paper-rgb)
+       其他地方散落的 rgba() 都走 var(--ink-rgb) / var(--paper-rgb)，無需逐處改 */
     --ink:#0a0a0b;
     --ink-rgb:10,10,11;
     --paper:#f1efea;
@@ -20,17 +20,17 @@
     --paper-tint:#e8e5de;
     --ink-tint:#18181a;
 
-    /* ============ 字体(跨主题固定) ============ */
+    /* ============ 字型(跨主題固定) ============ */
     --mono:"IBM Plex Mono",ui-monospace,monospace;
     --serif-en:"Playfair Display","Source Serif 4",Georgia,serif;
     --serif-body-en:"Source Serif 4",Georgia,serif;
-    --serif-zh:"Noto Serif SC",source-han-serif-sc,serif;
-    --sans-zh:"Noto Sans SC",source-han-sans-sc,sans-serif;
+    --serif-zh:"Noto Serif TC",source-han-serif-tc,serif;
+    --sans-zh:"Noto Sans TC",source-han-sans-tc,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:var(--sans-zh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-  /* ============ WebGL 双背景 ============ */
+  /* ============ WebGL 雙背景 ============ */
   canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;transition:opacity 1.2s ease}
   canvas#bg-light{opacity:0}
   canvas#bg-dark{opacity:1}
@@ -38,26 +38,26 @@
   body.light-bg canvas#bg-dark{opacity:0}
   body.low-power canvas.bg{display:none!important}
 
-  /* ============ Deck 容器 + 翻页 ============ */
-  /* width: NSLIDES * 100vw，会在 JS 里动态矫正 */
+  /* ============ Deck 容器 + 翻頁 ============ */
+  /* width: NSLIDES * 100vw，會在 JS 裡動態矯正 */
   #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
   .slide{width:100vw;height:100vh;flex:0 0 100vw;position:relative;padding:6vh 6vw 10vh 6vw;display:flex;flex-direction:column;overflow:hidden}
   .slide.light{color:var(--ink);background:var(--paper)}
   .slide.dark{color:var(--paper);background:var(--ink)}
 
-  /* 默认页：遮罩较厚，保证文字可读 */
+  /* 預設頁：遮罩較厚，保證文字可讀 */
   .slide::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;transition:background .7s ease}
   .slide.light::before{background:rgba(var(--paper-rgb),.78);backdrop-filter:blur(3px)}
   .slide.dark::before{background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(3px)}
-  /* Hero 页：遮罩大幅降低，让 WebGL 背景明显透出 */
+  /* Hero 頁：遮罩大幅降低，讓 WebGL 背景明顯透出 */
   .slide.hero.light::before{background:rgba(var(--paper-rgb),.16);backdrop-filter:none}
   .slide.hero.dark::before{background:rgba(var(--ink-rgb),.12);backdrop-filter:none}
-  /* Hero 页顶底微弱渐隐，保证 chrome/foot 区域可读 */
+  /* Hero 頁頂底微弱漸隱，保證 chrome/foot 區域可讀 */
   .slide.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
   .slide.hero.light::after{background:linear-gradient(180deg,rgba(var(--paper-rgb),.28) 0%,rgba(var(--paper-rgb),0) 14%,rgba(var(--paper-rgb),0) 86%,rgba(var(--paper-rgb),.28) 100%)}
   .slide.hero.dark::after{background:linear-gradient(180deg,rgba(var(--ink-rgb),.32) 0%,rgba(var(--ink-rgb),0) 14%,rgba(var(--ink-rgb),0) 86%,rgba(var(--ink-rgb),.32) 100%)}
 
-  /* ============ Magazine chrome：顶部 meta + 底部 foot ============ */
+  /* ============ Magazine chrome：頂部 meta + 底部 foot ============ */
   .chrome{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
   .chrome .left,.chrome .right{display:flex;gap:2.4em;align-items:center}
   .chrome .sep{width:40px;height:1px;background:currentColor;opacity:.4}
@@ -68,10 +68,10 @@
   .rule{width:100%;height:1px;background:currentColor;opacity:.25;margin:3vh 0}
   .rule.v{width:1px;height:100%;margin:0}
 
-  /* ============ 字体规则 ============
-     · 衬线（Noto Serif SC / Playfair）：大标题、重点金句、数字
-     · 非衬线（Noto Sans SC）：正文描述、body、补充说明
-     · 等宽（IBM Plex Mono）：kicker、meta 小标签、foot 右侧
+  /* ============ 字型規則 ============
+     · 襯線（Noto Serif TC / Playfair）：大標題、重點金句、數字
+     · 非襯線（Noto Sans TC）：正文描述、body、補充說明
+     · 等寬（IBM Plex Mono）：kicker、meta 小標籤、foot 右側
   */
   .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:2.6vh}
   .display{font-family:var(--serif-en);font-weight:700;font-size:11vw;line-height:.92;letter-spacing:-.025em}
@@ -89,7 +89,7 @@
   em{font-style:italic;font-family:var(--serif-en)}
   .en{font-family:var(--serif-en);font-style:italic;font-weight:500}
 
-  /* ============ 布局工具 ============ */
+  /* ============ 佈局工具 ============ */
   .col{display:flex;flex-direction:column;gap:2.4vh}
   .row{display:flex;align-items:center;gap:3vw}
   .grid-6{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:4vw 6vw;flex:1;align-content:center;padding:2vh 0}
@@ -104,7 +104,7 @@
   .bottom-right{position:absolute;right:6vw;bottom:9vh;max-width:50vw;text-align:right}
   .top-right{position:absolute;right:6vw;top:6vh;text-align:right}
 
-  /* ============ Stat（数字矩阵） ============ */
+  /* ============ Stat（數字矩陣） ============ */
   .stat{display:flex;flex-direction:column;gap:1vh;align-items:flex-start}
   .stat .n{font-family:var(--serif-en);font-weight:800;font-size:8vw;line-height:.88;letter-spacing:-.03em;font-feature-settings:"tnum"}
   .stat .l{font-family:var(--sans-zh);font-size:max(13px,1.05vw);opacity:.7;margin-top:1vh;font-weight:400;line-height:1.5}
@@ -151,7 +151,7 @@
   .ico-md{width:1.8vw;height:1.8vw;stroke-width:1.3;display:inline-block;vertical-align:-.4em}
   .ico-sm{width:1.1vw;height:1.1vw;stroke-width:1.4;display:inline-block;vertical-align:-.15em;opacity:.7}
 
-  /* ============ 图片占位（虚线框，提示设计师位置） ============ */
+  /* ============ 圖片佔位（虛線框，提示設計師位置） ============ */
   .img-slot{border:1.5px dashed rgba(127,127,127,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1vh;padding:2vh 2vw;font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.55;position:relative;aspect-ratio:16/9;width:100%;max-height:56vh;margin-inline:auto;box-sizing:border-box}
   .img-slot::before{content:"";position:absolute;inset:8px;border:1px solid currentColor;opacity:.2}
   .img-slot .plus{font-size:2vw;font-weight:300;opacity:.5;letter-spacing:0}
@@ -160,9 +160,9 @@
   .img-slot.r-3x2{aspect-ratio:3/2}
   .img-slot.r-1x1{aspect-ratio:1/1}
 
-  /* ============ 图片实填框（关键：固定高度 + 只裁底部） ============
-     重要约束：高度用内联 height:Nvh 精确控制，不要用 aspect-ratio（会撑破布局）
-     object-position:top center 保证严禁裁剪顶部和左右，只裁剪底部
+  /* ============ 圖片實填框（關鍵：固定高度 + 只裁底部） ============
+     重要約束：高度用內聯 height:Nvh 精確控制，不要用 aspect-ratio（會撐破布局）
+     object-position:top center 保證嚴禁裁剪頂部和左右，只裁剪底部
   */
   .frame-img{overflow:hidden;position:relative;background:rgba(0,0,0,.04);box-sizing:border-box;width:100%;border-radius:4px}
   .slide.dark .frame-img{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
@@ -186,7 +186,7 @@
   figure.tile{display:flex;flex-direction:column;margin:0;min-width:0}
   figure.tile > .frame-img{flex:0 0 auto}
 
-  /* ============ 导航 ============ */
+  /* ============ 導航 ============ */
   #nav{position:fixed;left:50%;bottom:2.6vh;transform:translateX(-50%);z-index:30;display:flex;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
   #nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s ease;border:0;padding:0}
   #nav .dot:hover{background:rgba(255,255,255,.5);transform:scale(1.15)}
@@ -199,21 +199,21 @@
   body.light-bg.low-power #hint{color:var(--ink)}
 
   /* ============================================================
-     ============ LAYOUTS API · 面向 agent 的类（v2）============
-     所有 layouts.md 中的骨架都基于下面这套命名。
-     如果你在 layouts.md 里看到某个类，它必须在下面有定义。
+     ============ LAYOUTS API · 面向 agent 的類（v2）============
+     所有 layouts.md 中的骨架都基於下面這套命名。
+     如果你在 layouts.md 裡看到某個類，它必須在下面有定義。
      ============================================================ */
 
-  /* ---------- .frame：每页主内容容器 ---------- */
+  /* ---------- .frame：每頁主內容容器 ---------- */
   .frame{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-  /* 当 .frame 同时加了 grid 类时，grid 的 display:grid 覆盖 flex */
+  /* 當 .frame 同時加了 grid 類時，grid 的 display:grid 覆蓋 flex */
   .frame.grid-2-7-5,
   .frame.grid-2-6-6,
   .frame.grid-2-8-4,
   .frame.grid-3-3,
   .frame.grid-6{display:grid}
 
-  /* ---------- 标题层级（API 名称，衬线为主） ---------- */
+  /* ---------- 標題層級（API 名稱，襯線為主） ---------- */
   .h-hero{
     font-family:var(--serif-zh);
     font-weight:900;
@@ -242,10 +242,10 @@
     font-size:2.3vw;
     line-height:1.3;
   }
-  /* 英文标题专用（Playfair 衬线） */
+  /* 英文標題專用（Playfair 襯線） */
   .h-hero-en,.h-xl-en{font-family:var(--serif-en);letter-spacing:-.025em}
 
-  /* ---------- lead 引语 ---------- */
+  /* ---------- lead 引語 ---------- */
   .lead{
     font-family:var(--serif-zh);
     font-weight:400;
@@ -254,7 +254,7 @@
     opacity:.86;
   }
 
-  /* ---------- meta-row 底部元数据 ---------- */
+  /* ---------- meta-row 底部後設資料 ---------- */
   .meta-row{
     display:flex;
     gap:1.2em;
@@ -267,7 +267,7 @@
     opacity:.6;
   }
 
-  /* ---------- stat-card（数据大字报用） ---------- */
+  /* ---------- stat-card（資料大字報用） ---------- */
   .stat-card{
     display:flex;
     flex-direction:column;
@@ -309,12 +309,12 @@
     opacity:.72;
     margin-top:.6vh;
   }
-  /* 当 stat-card 用于 grid-4（2x2），数字适度放大；若页面有标题+引文在上方，可内联 style 覆盖为更小值 */
+  /* 當 stat-card 用於 grid-4（2x2），數字適度放大；若頁面有標題+引文在上方，可內聯 style 覆蓋為更小值 */
   .grid-4 .stat-card .stat-nb{font-size:5vw}
-  /* 当只有 3 个，字也可以稍大 */
+  /* 當只有 3 個，字也可以稍大 */
   .grid-3 .stat-card .stat-nb{font-size:6.8vw}
 
-  /* ---------- pipeline（流水线） ---------- */
+  /* ---------- pipeline（流水線） ---------- */
   .pipeline-section{
     margin-top:4.4vh;
     padding-top:2.8vh;
@@ -371,8 +371,8 @@
     opacity:.72;
   }
 
-  /* ---------- 网格（layouts.md 所用） ---------- */
-  /* 这些类独立挂到任何容器上都能生效，不依赖 .frame 复合选择器 */
+  /* ---------- 網格（layouts.md 所用） ---------- */
+  /* 這些類獨立掛到任何容器上都能生效，不相依性 .frame 複合選取器 */
   .grid-2-7-5{display:grid;grid-template-columns:7fr 5fr;gap:3vw 4vh;align-items:start}
   .grid-2-6-6{display:grid;grid-template-columns:1fr 1fr;gap:3vw 4vh;align-items:start}
   .grid-2-8-4{display:grid;grid-template-columns:8fr 4fr;gap:3vw 4vh;align-items:start}
@@ -382,10 +382,10 @@
     grid-auto-rows:minmax(0,1fr);
     gap:2.4vh 2vw;
   }
-  /* grid-6 已在旧样式里定义为 3x2，这里仅补 align */
+  /* grid-6 已在舊樣式裡定義為 3x2，這裡僅補 align */
 
-  /* ---------- 图片 frame-img（layouts.md 主命名） ---------- */
-  /* 在旧样式里已定义，这里补 img-cap 命名别名与增强 */
+  /* ---------- 圖片 frame-img（layouts.md 主命名） ---------- */
+  /* 在舊樣式裡已定義，這裡補 img-cap 命名別名與增強 */
   figure.frame-img{margin:0;display:flex;flex-direction:column;min-width:0}
   .img-cap{
     display:block;
@@ -396,7 +396,7 @@
     text-transform:uppercase;
     opacity:.6;
   }
-  /* callout src 命名别名 */
+  /* callout src 命名別名 */
   .callout-src{
     display:block;
     margin-top:1.6vh;
@@ -407,18 +407,18 @@
     opacity:.6;
   }
 
-  /* ---------- chrome & foot 补位（layouts.md 简单写法） ---------- */
+  /* ---------- chrome & foot 補位（layouts.md 簡單寫法） ---------- */
   .chrome{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.62}
   .foot{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
 
-  /* ============ 动效系统(Motion One 驱动) ============
-     所有 [data-anim] 元素默认隐藏,进入页面时由 JS 逐个揭示。
-     - cascade(默认):按 DOM 顺序 stagger 120ms 淡入 + y:16→0
-     - hero(hero 页自动):慢一点的 stagger 180ms
-     - quote(含 [data-anim="line"]):逐行 600ms 淡入
-     - directional(含 [data-anim="left|right"]):左→分隔线→右
-     - pipeline(data-animate="pipeline"):Space/→ 手动推进
-     Motion One 没加载成功时(CDN 断 + 本地丢),所有 [data-anim] 会兜底显示。
+  /* ============ 動效系統(Motion One 驅動程式) ============
+     所有 [data-anim] 元素預設隱藏，進入頁面時由 JS 逐個揭示。
+     - cascade（預設）：按 DOM 順序 stagger 120ms 淡入 + y:16→0
+     - hero（hero 頁自動）：慢一點的 stagger 180ms
+     - quote（含 [data-anim="line"]）：逐行 600ms 淡入
+     - directional（含 [data-anim="left|right"]）：左→分隔線→右
+     - pipeline（data-animate="pipeline"）：Space/→ 手動推進
+     Motion One 沒載入成功時(CDN 斷 + 本地丟)，所有 [data-anim] 會兜底顯示。
   */
   [data-anim]{opacity:1}
   body.motion-ready [data-anim]{opacity:0}
@@ -433,7 +433,7 @@
   body.low-power.motion-ready [data-anim],
   body.low-power [data-anim]{opacity:1!important;transform:none!important}
 
-  /* ---------- 响应式降级 ---------- */
+  /* ---------- 回應式降級 ---------- */
   @media (max-width:900px){
     .display{font-size:16vw}
     .display-zh{font-size:12vw}
@@ -454,7 +454,7 @@
     window.__lowPowerMode = stored === '1' || (stored === null && reduced);
     function updateHint(){
       const hint = document.getElementById('hint');
-      if(hint) hint.textContent = `← → 翻页 · B ${window.__lowPowerMode ? '动态' : '静态'} · ESC 索引`;
+      if(hint) hint.textContent = `← → 翻頁 · B ${window.__lowPowerMode ? '動態' : '靜態'} · ESC 索引`;
     }
     window.__setLowPowerMode = function(on, opts={}){
       window.__lowPowerMode = !!on;
@@ -474,14 +474,14 @@
 
 <canvas id="bg-dark" class="bg"></canvas>
 <canvas id="bg-light" class="bg"></canvas>
-<div id="hint">← → 翻页 · B 静态 · ESC 索引</div>
+<div id="hint">← → 翻頁 · B 靜態 · ESC 索引</div>
 
 <div id="deck">
 
 <!-- ============================================================
-     SLIDES 插入区 · 在此处填充所有 <section class="slide ..."> 页面
-     每页模板参考 references/page-patterns.md
-     页面组件参考 references/components.md
+     SLIDES 插入區 · 在此處填充所有 <section class="slide ..."> 頁面
+     每頁範本參考 references/page-patterns.md
+     頁面元件參考 references/components.md
      ============================================================ -->
 
 <!-- SLIDES_HERE -->
@@ -491,10 +491,10 @@
 <div id="nav"></div>
 
 <script>
-/* =============== WebGL 双背景 ===============
-   深色页：Holographic Dispersion（全息色散 · 钛金暗流）—— 彩虹微扰、鼠标径向涟漪
-   浅色页：Spiral Vortex（旋转涡流 · 银色珍珠）—— domain-warp 流动、无中心
-   修改风格请参考 references/webgl-backgrounds.md
+/* =============== WebGL 雙背景 ===============
+   深色頁：Holographic Dispersion（全息色散 · 鈦金暗流）—— 彩虹微擾、滑鼠徑向漣漪
+   淺色頁：Spiral Vortex（旋轉渦流 · 銀色珍珠）—— domain-warp 流動、無中心
+   修改風格請參考 references/webgl-backgrounds.md
 */
 const VS = `attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
 
@@ -619,13 +619,13 @@ function stopGL(){
 startGL();
 addEventListener('ppt-low-power-change', e=>{e.detail.on ? stopGL() : startGL();});
 
-// =============== 导航（翻页 / 圆点 / 键盘 / 滚轮 / 触屏） ===============
+// =============== 導航（翻頁 / 圓點 / 鍵盤 / 滾輪 / 觸屏） ===============
 const deck=document.getElementById('deck');
 const slides=deck.querySelectorAll('.slide');
 const nav=document.getElementById('nav');
 let idx=0,total=slides.length,lock=false;
 
-// 关键：矫正 deck 宽度为 total * 100vw，否则翻页会错位
+// 關鍵：矯正 deck 寬度為 total * 100vw，否則翻頁會錯位
 deck.style.width=(total*100)+'vw';
 
 slides.forEach((s,i)=>{
@@ -641,16 +641,16 @@ function go(n){
   window.__currentSlideIndex = idx;
   deck.style.transform=`translateX(${-idx*100}vw)`;
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-  /* 主题切换：优先读 data-theme，其次从 class（light/dark）推断 */
+  /* 主題轉場：優先讀 data-theme，其次從 class（light/dark）推斷 */
   const el=slides[idx];
   const th=el.dataset.theme || (el.classList.contains('light')?'light':(el.classList.contains('dark')?'dark':'dark'));
   document.body.classList.toggle('light-bg',th==='light');
-  /* 动效：翻页过渡中段触发当前页的入场动画（由 motion-boot 注册） */
+  /* 動效：翻頁過渡中段觸發當前頁的入場動畫（由 motion-boot 註冊） */
   if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
   lock=true;setTimeout(()=>lock=false,700);
 }
 
-/* =============== ESC 索引视图 =============== */
+/* =============== ESC 索引檢視 =============== */
 let overviewOn=false;
 const ov=document.createElement('div');
 ov.id='overview';
@@ -735,11 +735,11 @@ go(0);
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>lucide.createIcons();</script>
 
-<!-- ============ Motion One 动效引擎（本地优先,CDN 兜底） ============
-     加载策略:先 ./assets/motion.min.js(本地,离线可用),失败 fallback 到 jsDelivr CDN
-     加载完成后挂 window.__playSlide / window.__pipeAdvance,
-     导航脚本会在翻页中段调用 __playSlide(idx),键盘/滚轮/触屏会在翻页前调用 __pipeAdvance()
-     双双失败时会兜底把所有 [data-anim] 设为可见,不让动效破坏阅读
+<!-- ============ Motion One 動效引擎（本地優先，CDN 兜底） ============
+     載入策略：先 ./assets/motion.min.js（本地，離線可用），失敗 fallback 到 jsDelivr CDN
+     載入完成後掛 window.__playSlide / window.__pipeAdvance,
+     導航指令碼會在翻頁中段呼叫 __playSlide(idx)，鍵盤/滾輪/觸屏會在翻頁前呼叫 __pipeAdvance()
+     雙雙失敗時會兜底把所有 [data-anim] 設為可見，不讓動效破壞閱讀
 -->
 <script type="module">
 let motion;
@@ -850,7 +850,7 @@ if(motion){
   window.__playSlide = playSlide;
   window.__pipeAdvance = pipeAdvance;
 
-  // 首屏:go(0) 已跑过(同步),没来得及触发动效 → 这里补一下
+  // 首屏：go(0) 已跑過（同步），沒來得及觸發動效 → 這裡補一下
   playSlide(0);
 }
 </script>

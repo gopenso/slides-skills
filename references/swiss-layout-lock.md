@@ -1,86 +1,86 @@
 # Swiss Layout Lock
 
-本文件是瑞士主题的硬约束。它的目的不是增加灵感,而是防止生成时“看起来像 Swiss,但已经脱离原始模板”。
+本檔案是瑞士主題的硬約束。它的目的不是增加靈感，而是防止產生時「看起來像 Swiss，但已經脫離原始範本」。
 
 ## Golden Source
 
-原始参考文件:
+原始參考檔案：
 
-`/Users/guohao/Documents/op7418的仓库/项目/Thin-Harness-Fat-Skills/ppt/index.html`
+`/Users/guohao/Documents/op7418的儲存庫/專案/Thin-Harness-Fat-Skills/ppt/index.html`
 
-瑞士主题生成时,除用户明确要求实验版式外,只能从下面登记的 22 个版式中选择。新增首页/尾页可以使用 Skill 里的 IKB ASCII 版本,但正文页必须来自这 22 个版式。
+瑞士主題產生時，除使用者明確要求實驗版式外，只能從下面登記的 22 個版式中選取。新增首頁/尾頁可以使用 Skill 裡的 IKB ASCII 版本，但正文頁必須來自這 22 個版式。
 
-## 生成前硬规则
+## 產生前硬規則
 
-1. 每个正文页都必须先选一个登记版式,并在 `<section>` 上写 `data-layout="Sxx"`。
-2. 不允许临时发明 `P23/P24` 这类未出现在原始 22P 的正文结构。需要图片时,优先使用 `S22 Image Hero`;多图时使用 `S15/S16` 的原始网格骨架做图片格改造,不要发明新的证据墙。唯一登记的交互扩展是 `S08 + Swiss Map Component`,详见 `references/swiss-map-component.md`。
-3. 顶部中文标题默认左对齐并贴近左上内容轴。除原始 `S03/S09/S10` 这种 statement/split 版式外,不要把大标题放到页面水平中心。
-4. SVG 只能负责几何线条、圆、箭头、路径。不要在 SVG 里写可见文字;所有文字标签用 HTML 放在网格、卡片或 caption 里。
-5. 图片槽位和图片生成比例必须绑定。先确定版式和槽位,再生成图片。
+1. 每個正文頁都必須先選一個登記版式，並在 `<section>` 上寫 `data-layout="Sxx"`。
+2. 不允許臨時發明 `P23/P24` 這類未出現在原始 22P 的正文結構。需要圖片時，優先使用 `S22 Image Hero`；多圖時使用 `S15/S16` 的原始網格骨架做圖片格改造，不要發明新的證據牆。唯一登記的互動擴充是 `S08 + Swiss Map Component`，詳見 `references/swiss-map-component.md`。
+3. 頂部中文標題預設靠左對齊並貼近左上內容軸。除原始 `S03/S09/S10` 這種 statement/split 版式外，不要把大標題放到頁面水平中心。
+4. SVG 只能負責幾何線條、圓、箭頭、路徑。不要在 SVG 裡寫可見文字；所有文字標籤用 HTML 放在網格、卡片或 caption 裡。
+5. 圖片槽位和圖片產生比例必須繫結。先確定版式和槽位，再產生圖片。
 
-## 登记版式
+## 登記版式
 
-| ID | 原始页 | 名称 | 必须保留的骨架 | 图片规则 |
-|---|---:|---|---|---|
-| S01 | 01 | Index Cover | 三行 `cover-row`,左大编号,右大标题 | 无 |
-| S02 | 02 | Vertical Timeline + KPI | 顶部左对齐标题,中部 `.timeline-v`,底部 `.kpi-row-4` | 无 |
-| S03 | 03 | Split Statement | `.slide.split` 双半屏,左巨字,右灰底解释 | 无 |
-| S04 | 04 | Six Cells | 顶部左对齐标题,下方 `.sub-grid-3-2` 六卡 | 可把卡片内部换成小图标,不放大图 |
-| S05 | 05 | Three Layers | 顶部左对齐标题,下方 `.stack-row` 三大块 | 无 |
-| S06 | 06 | KPI Tower | 左标题+右说明,下方不等高 KPI 塔 | 无 |
-| S07 | 07 | Horizontal Bar | 左对齐标题,横向条形图 | 无 |
-| S08 | 08 | Duo Compare | `.duo-compare` 两列 + 中线 | 无;地点/路线内容可使用 `S08 + Swiss Map Component` 替换右侧插槽 |
-| S09 | 09 | Dot Matrix Statement | 大号 statement + 点阵装饰 | 无 |
-| S10 | 10 | Split Closing | `.slide.split` 左巨字右列表 | 无 |
-| S11 | 11 | Horizontal Timeline | 原始 `grid-template-columns:auto 1fr` 头部 + `.timeline-h` | 无 |
-| S12 | 12 | Manifesto + Ink Banner | 大字 statement + 底部通栏 ink 条 | 无 |
-| S13 | 13 | Three Forces | 左 ink hero 块 + 右 3 张卡 | 无 |
-| S14 | 14 | Loop Form | 左 4 步列表 + 右几何 loop | SVG 禁止文字,标签改 HTML |
-| S15 | 15 | Matrix + Hero Stat | 顶部左对齐标题,中段 6×2 矩阵,底部巨数 | 多图可改造矩阵格,同组统一 `21:9` |
-| S16 | 16 | Multi-card Brief | 顶部左对齐标题,下方 3×2 微卡 | 多图可改造卡片内容,同组统一 `21:9` |
-| S17 | 17 | System Diagram | 顶部左小标题+右段落,中部几何系统图,底部三列解释 | SVG 禁止文字,标签改 HTML |
-| S18 | 18 | Why Now | 三列递进 + 底部巨数 | 无 |
-| S19 | 19 | Four Cards | 顶部蓝线 + 四列均分 | 无 |
-| S20 | 20 | Stacked KPI Ledger | 纵向账单式巨数 | 无 |
-| S21 | 21 | Tech Spec Sheet | 大标题 + 三 KPI + 右下竖线矩阵 | 无 |
-| S22 | 22 | Image Hero | 顶部全宽图 + 左上白块标题 + 下方三列 KPI | 主图按 `21:9` 生成,关键主体放中央安全区 |
+| ID | 原始頁 | 名稱 | 必須保留的骨架 | 圖片規則 |
+|---|---|---|---|---|
+| S01 | 01 | Index Cover | 三行 `cover-row`，左大編號，右大標題 | 無 |
+| S02 | 02 | Vertical Timeline + KPI | 頂部靠左對齊標題，中部 `.timeline-v`，底部 `.kpi-row-4` | 無 |
+| S03 | 03 | Split Statement | `.slide.split` 雙半屏，左巨字，右灰底解釋 | 無 |
+| S04 | 04 | Six Cells | 頂部靠左對齊標題，下方 `.sub-grid-3-2` 六卡 | 可把卡片內部換成小圖示，不放大圖 |
+| S05 | 05 | Three Layers | 頂部靠左對齊標題，下方 `.stack-row` 三大塊 | 無 |
+| S06 | 06 | KPI Tower | 左標題+右說明，下方不等高 KPI 塔 | 無 |
+| S07 | 07 | Horizontal Bar | 靠左對齊標題，橫向條形圖 | 無 |
+| S08 | 08 | Duo Compare | `.duo-compare` 兩列 + 中線 | 無；地點/路線內容可使用 `S08 + Swiss Map Component` 取代右側插槽 |
+| S09 | 09 | Dot Matrix Statement | 大號 statement + 點陣裝飾 | 無 |
+| S10 | 10 | Split Closing | `.slide.split` 左巨字右列表 | 無 |
+| S11 | 11 | Horizontal Timeline | 原始 `grid-template-columns:auto 1fr` 頭部 + `.timeline-h` | 無 |
+| S12 | 12 | Manifesto + Ink Banner | 大字 statement + 底部通欄 ink 條 | 無 |
+| S13 | 13 | Three Forces | 左 ink hero 塊 + 右 3 張卡 | 無 |
+| S14 | 14 | Loop Form | 左 4 步列表 + 右幾何 loop | SVG 禁止文字，標籤改 HTML |
+| S15 | 15 | Matrix + Hero Stat | 頂部靠左對齊標題，中段 6×2 矩陣，底部巨數 | 多圖可改造矩陣格，同組統一 `21:9` |
+| S16 | 16 | Multi-card Brief | 頂部靠左對齊標題，下方 3×2 微卡 | 多圖可改造卡片內容，同組統一 `21:9` |
+| S17 | 17 | System Diagram | 頂部左小標題+右段落，中部幾何系統圖，底部三列解釋 | SVG 禁止文字，標籤改 HTML |
+| S18 | 18 | Why Now | 三列遞進 + 底部巨數 | 無 |
+| S19 | 19 | Four Cards | 頂部藍線 + 四列均分 | 無 |
+| S20 | 20 | Stacked KPI Ledger | 縱向賬單式巨數 | 無 |
+| S21 | 21 | Tech Spec Sheet | 大標題 + 三 KPI + 右下豎線矩陣 | 無 |
+| S22 | 22 | Image Hero | 頂部全寬圖 + 左上白塊標題 + 下方三列 KPI | 主圖按 `21:9` 產生，關鍵主體放中央安全區 |
 
-## 登记扩展组件
+## 登記擴充元件
 
 ### S08 + Swiss Map Component
 
-- 使用场景:地理、历史、城市路线、门店/校区/事件点位、人物住所关系。
-- 版式身份:仍是 `data-layout="S08"`,不是新正文页。
-- 页面结构:顶部左对齐标题 + 左侧关系/说明卡片 + 右侧 MapLibre 地图卡片。
-- 标记结构:点 + 连线 + HTML 卡片;SVG 只画 fallback 关系线,不写文字。
-- 交互控制:右上角必须有 `+` / `-` / `DRAG`;默认禁用滚轮缩放和拖动,避免触发 PPT 翻页。
-- 详细代码和数据契约见 `references/swiss-map-component.md`。
+- 使用場景：地理、歷史、城市路線、門店/校區/事件點位、人物住所關係。
+- 版式身份：仍是 `data-layout="S08"`，不是新正文頁。
+- 頁面結構：頂部靠左對齊標題 + 左側關係/說明卡片 + 右側 MapLibre 地圖卡片。
+- 標記結構：點 + 連線 + HTML 卡片；SVG 只畫 fallback 關係線，不寫文字。
+- 互動控制：右上角必須有 `+` / `-` / `DRAG`；預設禁用滾輪縮放和拖動，避免觸發 PPT 翻頁。
+- 詳細程式碼和資料契約見 `references/swiss-map-component.md`。
 
-## 图片槽位规则
+## 圖片槽位規則
 
 ### S22 · Hero Strip
 
-- 生成比例: `21:9`
-- 图片用途:实拍场景、产品场景、UI 情景图。
-- 生成提示词必须包含: `21:9 ultra-wide strip`, `subject centered in the safe middle area`, `no title, no footer, no page chrome, no logo, no border`.
-- HTML 容器必须使用原始 S22 的顶部全宽图骨架;不要改成普通居中大图。
-- 照片用 `object-fit:cover;object-position:center 35%`。如果是人像/会议场景,不要用 `top center`。
-- 信息图/UI 截图如果放 S22,必须重新生成接近 `21:9`,并用 `object-fit:contain` 或保证核心内容在中央 70% 安全区。
+- 產生比例：`21:9`
+- 圖片用途：實拍場景、產品場景、UI 情景圖。
+- 產生提示詞必須包含：`21:9 ultra-wide strip`, `subject centered in the safe middle area`, `no title, no footer, no page chrome, no logo, no border`.
+- HTML 容器必須使用原始 S22 的頂部全寬圖骨架；不要改成普通居中大圖。
+- 照片用 `object-fit:cover;object-position:center 35%`。如果是人像/會議場景，不要用 `top center`。
+- 資訊圖/UI 截圖如果放 S22，必須重新產生接近 `21:9`，並用 `object-fit:contain` 或保證核心內容在中央 70% 安全區。
 
 ### S15/S16 · Multi Image Grid
 
-- 生成比例:统一 `21:9` 或统一 `16:10`,不要混用。
-- 同一组图片必须同高、同宽、同一容器背景。
-- 图片格必须吸附原始卡片网格,不要让图片自己决定宽高。
-- 如果图片是按槽位重新生成的 `s15-grid-21x9` / `s16-brief-21x9`,容器必须用 `.frame-img.r-21x9` 铺满槽位,不要再加 `.fit-contain`,也不要用固定 `height:18vh` 这类短槽把长图缩小。
-- `.fit-contain` 只用于必须保留原始比例的用户截图或文字密集图片;一旦决定重生成图片,就应该按槽位比例重生成并铺满。
-- 如果原始截图比例不可控,先按 `references/screenshot-framing.md` 做程序化比例适配;只有长截图、极窄截图或信息需要重构时,才用 GPT-M 2.0 重生成“截图再设计”。
+- 產生比例：統一 `21:9` 或統一 `16:10`，不要混用。
+- 同一組圖片必須同高、同寬、同一容器背景。
+- 圖片格必須吸附原始卡片網格，不要讓圖片自己決定寬高。
+- 如果圖片是按槽位重新產生的 `s15-grid-21x9` / `s16-brief-21x9`，容器必須用 `.frame-img.r-21x9` 鋪滿槽位，不要再加 `.fit-contain`，也不要用固定 `height:18vh` 這類短槽把長圖縮小。
+- `.fit-contain` 只用於必須保留原始比例的使用者截圖或文字密集圖片；一旦決定重產生圖片，就應該按槽位比例重產生並鋪滿。
+- 如果原始截圖比例不可控，先按 `references/screenshot-framing.md` 做程式化比例適配；只有長截圖、極窄截圖或資訊需要重構時，才用 GPT-M 2.0 重產生「截圖再設計」。
 
-## 禁止清单
+## 禁止清單
 
-- 禁止 `text-align:center` 用在顶部中文大标题。
-- 禁止将顶部标题写进右侧 7.8fr 栏,造成视觉居中。
-- 禁止未登记正文页:例如临时 `Swiss Image Split`、`Evidence Grid`、三圆图自绘页。
-- 禁止图片容器灰底包白底信息图。
-- 禁止 SVG 中出现 `<text>` 作为可见标签。
-- 禁止图片默认 `object-position:top center` 用于照片。
+- 禁止 `text-align:center` 用在頂部中文大標題。
+- 禁止將頂部標題寫進右側 7.8fr 欄，造成視覺居中。
+- 禁止未登記正文頁：例如臨時 `Swiss Image Split`、`Evidence Grid`、三圓圖自繪頁。
+- 禁止圖片容器灰底包白底資訊圖。
+- 禁止 SVG 中出現 `<text>` 作為可見標籤。
+- 禁止圖片預設 `object-position:top center` 用於照片。

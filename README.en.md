@@ -1,14 +1,11 @@
-# Guizang PPT Skill · Web Decks / Images / Covers
+# slides skills · Web Decks / Images / Covers
 
-![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-ppt-skill?style=flat-square)
-![License](https://img.shields.io/github/license/op7418/guizang-ppt-skill?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/gopenso/slides-skills?style=flat-square)
+![License](https://img.shields.io/github/license/gopenso/slides-skills?style=flat-square)
 ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square)
 ![HTML Deck](https://img.shields.io/badge/HTML-Deck-0A7CFF?style=flat-square)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square)
 ![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)
-[![Supported by ZhenFund Token Grant](https://img.shields.io/static/v1?label=ZhenFund%20Token%20Grant&message=Supported&color=FF4D00&style=flat-square)](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=)
-![360 Security Lobster Gold Sponsor](https://img.shields.io/static/v1?label=360%20Security%20Lobster&message=Gold%20Sponsor&color=1677FF&style=flat-square)
-
 An agent skill for Claude Code, Codex, and similar coding-agent environments. It generates **single-file HTML horizontal-swipe decks**, deck visuals, and social cover pages.
 
 It ships with two visual systems:
@@ -17,7 +14,6 @@ It ships with two visual systems:
 - **Style B: Swiss International Typographic Style**. Grid-first, one high-saturation anchor color, sharp rectangles, hairline rules, and extreme type contrast. Best for facts, products, analysis, and frameworks.
 
 > Distilled by [Guizang](https://x.com/op7418) from offline talks like "One-Person Company: Organizations Folded by AI" and "A New Way of Working." Every pitfall hit during those decks is logged in `checklist.md`.
-> Sponsor and supporter details are listed in [SPONSORS.md](./SPONSORS.md).
 
 **Old Theme · Style A Editorial Magazine**
 
@@ -30,19 +26,19 @@ It ships with two visual systems:
 ## 30-second start
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add https://github.com/gopenso/slides-skills --skill slides-skills
 ```
 
 Or paste this to an AI agent with shell access:
 
 ```text
-Install guizang-ppt-skill for me. Clone https://github.com/op7418/guizang-ppt-skill into ~/.claude/skills/guizang-ppt-skill, then verify that SKILL.md, assets/, and references/ exist.
+Install slides-skills for me. Clone https://github.com/gopenso/slides-skills into ~/.claude/skills/slides-skills, then verify that SKILL.md, assets/, and references/ exist.
 ```
 
 If you already installed it, update with:
 
 ```text
-Update guizang-ppt-skill for me. Go to ~/.claude/skills/guizang-ppt-skill, run git pull, then tell me the latest commit.
+Update slides-skills for me. Go to ~/.claude/skills/slides-skills, run git pull, then tell me the latest commit.
 ```
 
 Then ask your agent:
@@ -58,14 +54,6 @@ Turn this Markdown file into an editorial magazine-style presentation.
 Create a 21:9 social cover from the core idea of this deck.
 Redesign this product screenshot as a 16:10 slide visual.
 ```
-
-## Sponsors and Supporters
-
-<a href="./SPONSORS.md">
-  <img src="https://github.com/user-attachments/assets/5b0c22c8-aff4-4219-900d-6af8604c57a8" alt="360 Security Lobster Gold Sponsor" width="100%">
-</a>
-
-Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and by [ZhenFund Token Grant](https://zhenfund.feishu.cn/share/base/form/shrcn1lAANF659o7EpWnxlR1VOh?sessionid=). See [SPONSORS.md](./SPONSORS.md) for details.
 
 ## What you get
 
@@ -119,16 +107,16 @@ Guizang PPT Skill is supported by **360 Security Lobster** as Gold Sponsor and b
 ### Option 1: One-line install (recommended)
 
 ```bash
-npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill
+npx skills add gopenso/slides-skills --skill slides-skills
 ```
 
 ### Option 2: Paste this to an AI
 
-> Install the `guizang-ppt-skill` Claude Code skill for me. Steps:
+> Install the `slides-skills` Claude Code skill for me. Steps:
 >
 > 1. Make sure `~/.claude/skills/` exists (create if not)
-> 2. Run `git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill`
-> 3. Verify: `ls ~/.claude/skills/guizang-ppt-skill/` should show `SKILL.md`, `assets/`, `references/`
+> 2. Run `git clone https://github.com/gopenso/slides-skills.git ~/.claude/skills/slides-skills`
+> 3. Verify: `ls ~/.claude/skills/slides-skills/` should show `SKILL.md`, `assets/`, `references/`
 > 4. Tell me when done. Later, saying things like "make me a magazine-style deck" will trigger this skill.
 
 Paste the block above into Claude Code / Cursor / any AI agent with shell access and it handles the install.
@@ -136,7 +124,7 @@ Paste the block above into Claude Code / Cursor / any AI agent with shell access
 ### Option 3: Manual CLI
 
 ```bash
-git clone https://github.com/op7418/guizang-ppt-skill.git ~/.claude/skills/guizang-ppt-skill
+git clone https://github.com/gopenso/slides-skills.git ~/.claude/skills/slides-skills
 ```
 
 ### How to trigger it
@@ -237,7 +225,7 @@ Redesign these product screenshots into consistent 16:10 slide visuals. Preserve
 ## Directory
 
 ```
-guizang-ppt-skill/
+slides-skills/
 ├── SKILL.md              ← main skill file: workflow, principles, common mistakes
 ├── README.md             ← Chinese README
 ├── README.en.md          ← this file
@@ -344,4 +332,4 @@ Bugs, layout issues, new layout requests — Issues and PRs welcome. Prioritize:
 
 ## License
 
-AGPL-3.0 © 2026 [op7418](https://github.com/op7418)
+AGPL-3.0 © 2026 [gopenso](https://github.com/gopenso), [op7418](https://github.com/op7418)
