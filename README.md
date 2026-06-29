@@ -17,11 +17,11 @@
 
 **舊主題 · Style A 電子雜誌風**
 
-![Style A 電子雜誌風效果展示](https://github.com/user-attachments/assets/5dc316a2-401c-4e37-9123-ea081b6ae470)
+![Style A 電子雜誌風效果展示](https://github.com/user-attachments/assets/60ed4302-09e4-460c-ab69-aebd831a8e3a)
 
 **新主題 · Style B 瑞士國際主義**
 
-![Style B 瑞士國際主義效果展示](https://github.com/user-attachments/assets/8960e78c-69bb-4b7e-aa95-6fad64b70314)
+![Style B 瑞士國際主義效果展示](https://github.com/user-attachments/assets/aab4c010-0966-4394-8f1c-1cbb912cf13a)
 
 ## 30 秒開始
 
