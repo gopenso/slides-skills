@@ -6,7 +6,7 @@
 
 原始參考檔案：
 
-`/Users/guohao/Documents/op7418的儲存庫/專案/Thin-Harness-Fat-Skills/ppt/index.html`
+`../assets/template-swiss.html`
 
 瑞士主題產生時，除使用者明確要求實驗版式外，只能從下面登記的 22 個版式中選取。新增首頁/尾頁可以使用 Skill 裡的 IKB ASCII 版本，但正文頁必須來自這 22 個版式。
 

@@ -51,7 +51,7 @@ npx skills add gopenso/slides-skills --skill slides-skills
 
 ```text
 幫我把這份 Markdown 做成雜誌風演講 PPT。
-基於這份 PPT 的核心觀點，產生一張頻道橫幅 21:9 封面。
+基於這份 PPT 的核心觀點，產生一張 21:9 封面。
 把這張產品截圖重新設計成適合 PPT 的 16:10 配圖。
 ```
 
@@ -136,7 +136,7 @@ git clone https://github.com/gopenso/slides-skills.git ~/.claude/skills/slides-s
 - "產生一個 horizontal swipe deck"
 - "editorial magazine style presentation"
 - "electronic ink 風格演講 slides"
-- "基於這篇文章做一張頻道橫幅 21:9 封面"
+- "基於這篇文章做一張 21:9 封面"
 - "基於這份 PPT 產生一張 1:1 分享卡"
 
 ## 使用流程
@@ -215,7 +215,7 @@ node scripts/validate-swiss-deck.mjs path/to/index.html
 ```
 
 ```text
-基於這份 PPT 的主題，做兩張封面：頻道橫幅 21:9 封面和 1:1 分享卡，視覺保持一致。
+基於這份 PPT 的主題，做兩張封面：21:9 封面和 1:1 分享卡，視覺保持一致。
 ```
 
 ```text

@@ -391,7 +391,7 @@ cp "<SKILL_ROOT>/assets/template-swiss.html" "專案/XXX/ppt/index.html"
 
 程式碼只能證明類名和結構存在，不能證明版式舒服。產生後必須開啟網頁逐頁看：
 
-1. 同時開啟原始參考 PPT、當前範本或產生頁、測試 PPT；原始參考是 `/Users/guohao/Documents/op7418的儲存庫/專案/Thin-Harness-Fat-Skills/ppt/index.html`。
+1. 同時開啟原始參考 PPT、當前範本或產生頁、測試 PPT；原始參考是 `assets/template-swiss.html`。
 2. 截圖前等入場動效穩定（約 1-2 秒），不要把動畫中間態當成版式問題。
 3. 先看視覺：大標題字重、標題與內容間距、圖片是否與正文對齊、圖片/說明是否碰到底部分頁元件。
 4. 再看程式碼：確認該頁選用的版式與內容形狀相符，沒有把資料專用版式拿來講概念，也沒有把可選元件堆成裝飾。
