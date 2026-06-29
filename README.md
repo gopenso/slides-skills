@@ -257,7 +257,7 @@ slides-skills/
 | <img src="https://github.com/user-attachments/assets/df21dbcb-5fe4-4852-a91a-a9cf00aceeb4" width="260" alt="墨水經典主題預覽"> | 🖋 **墨水經典** | `#0a0a0b` / `#f1efea`。通用預設、商業釋出、不知道選啥時最穩。 |
 | <img src="https://github.com/user-attachments/assets/99ce0fd2-72a6-4368-a75a-a8e21657a537" width="260" alt="靛藍瓷主題預覽"> | 🌊 **靛藍瓷** | `#0a1f3d` / `#f1f3f5`。科技、研究、AI、技術釋出會。 |
 | <img src="https://github.com/user-attachments/assets/bcc1cc4c-5e8e-4467-ae8d-f5801ae73657" width="260" alt="森林墨主題預覽"> | 🌿 **森林墨** | `#1a2e1f` / `#f5f1e8`。自然、可持續、文化、非虛構內容。 |
-| <img src="https://github.com/user-attachments/assets/dfea080e-e916-417e-93cd-0a3627de84ca" width="260" alt="牛皮紙主題預覽"> | 🍂 **牛皮紙** | `#2a1e13` / `#eedfc7`。懷舊、人文、閱讀、歷史、文學分享。 |
+| <img src="https://github.com/user-attachments/assets/dfea080e-e916-417e-93cd-0a3628de84ca" width="260" alt="牛皮紙主題預覽"> | 🍂 **牛皮紙** | `#2a1e13` / `#eedfc7`。懷舊、人文、閱讀、歷史、文學分享。 |
 | <img src="https://github.com/user-attachments/assets/f3705592-9a72-4dbc-9818-df3aea61bc75" width="260" alt="沙丘主題預覽"> | 🌙 **沙丘** | `#1f1a14` / `#f0e6d2`。藝術、設計、創意、時尚和畫廊感內容。 |
 
 切換主題只需取代 `template.html` 開頭 `:root{}` 裡的 6 行變數，其他 CSS 全走 `var(--...)`。
